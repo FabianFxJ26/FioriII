@@ -1,12 +1,7 @@
-<mvc:View controllerName="sap.training.exc.controller.Overview"
-          xmlns:mvc="sap.ui.core.mvc" 
-          xmlns:f="sap.ui.layout.form"
-          xmlns:core="sap.ui.core" 
-          xmlns="sap.m">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="sap.training.exc.controller.Overview">
           <Page title="Flight Customers">
   <content>
-    <Panel headerText="New Customer" expandable="true" expanded="true"
-    class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
+    <Panel headerText="New Customer" expandable="true" expanded="true" class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
       <content>
         <f:SimpleForm layout="ColumnLayout" editable="true">
           <f:toolbar>
@@ -43,6 +38,28 @@
         </f:SimpleForm>
       </content>
     </Panel>
+    <Table headerText="Customers" growing="true" growingThreshold="5" class="sap.sapUiResponsiveMargin" width="auto" items="{/Customers}">
+    <columns>
+    <Column><header><Text text="Customer Name"/></header></Column>
+    <Column><header><Text text="Street"/></header></Column>
+    <Column><header><Text text="Post Code"/></header></Column>
+    <Column><header><Text text="City"/></header></Column>
+    <Column><header><Text text="Country"/></header></Column>
+    <Column><header><Text text="Email"/></header></Column>
+    </columns>
+    <items>
+    <ColumnListItem>
+    <cells>
+      <ObjectIdentifier title="{CustomerName}"/>
+      <ObjectIdentifier title="{Street}"/>
+      <ObjectIdentifier title="{PostCode}"/>
+      <ObjectIdentifier title="{City}"/>
+      <ObjectIdentifier title="{Country}"/>
+      <ObjectIdentifier title="{Email}"/>
+    </cells>
+    </ColumnListItem>
+    </items>
+    </Table>
   </content>
 </Page>
 </mvc:View>
