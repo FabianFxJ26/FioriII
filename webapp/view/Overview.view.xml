@@ -1,4 +1,5 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="sap.training.exc.controller.Overview">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="sap.training.exc.controller.Overview"
+core:require="{formatter: 'sap/training/exc/model/formatter'}">
           <Page title="Flight Customers">
   <content>
     <Panel headerText="New Customer" expandable="true" expanded="true" class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
@@ -19,7 +20,10 @@
             <Label text="Customer Name"/>
             <Input value="{customer>/CustomerName}"/>
             <Label text="Discount"/>
-            <Input value="{customer>/Discount}"/>
+            <Input value="{
+            path: 'customer>/Discount',
+            type: 'sap.ui.model.type.Integer',
+            constraints: {minimum: 0, maximum: 100}}"/>
             <core:Title text="Address Data"/>
             <Label text="Street"/>
             <Input value="{customer>/Street}"/>
@@ -77,11 +81,31 @@
     <cells>
       <ObjectIdentifier title="{AirlineID}"/>
       <ObjectIdentifier title="{ConnectionNumber}"/>
-      <ObjectIdentifier title="{FlightDate}"/>
-      <Text text="{Class}"/>
-        <ObjectNumber number="{ForeignCurrencyPayment}"
-              unit="{ForeignCurrency}"/>
-        <Text text="{IsCancelled}"/>
+      <!--
+      the flight date is stored as a string, for example "2024-02-27". 
+      This is converted to the format "Feb 27, 2024" via the data binding.-->
+      <ObjectIdentifier title="{
+         path: 'FlightDate',
+         type: 'sap.ui.model.type.Date',
+         formatOptions: {
+         source: {pattern: 'yyyy-MM-dd'},
+         style: 'medium'}}"/>
+      <Text text="{path: 'Class',
+                   formatter: 'formatter.classText'}"/>
+      <!--
+      For example, currency amounts in Euro (EUR) are displayed with 2 decimals, 
+      while amounts in Japanese Yen (JPY) have no decimals.
+      -->
+      <ObjectNumber
+      number="{
+       parts: [
+       {path: 'ForeignCurrencyPayment'},
+       {path: 'ForeignCurrency'}
+       ],
+       type: 'sap.ui.model.type.Currency',
+       formatOptions: {showMeasure: false}}"
+       unit="{ForeignCurrency}"/>
+      <Text text="{IsCancelled}"/>
     </cells>
     </ColumnListItem>
     </items>
