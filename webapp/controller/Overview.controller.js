@@ -12,8 +12,9 @@ sap.ui.define([
         return Controller.extend("sap.training.exc.controller.Overview", {
             onInit: function () {
                 var oModel = new JSONModel();
-                this.getView().setModel(oModel,"customer");
-            },
+                
+                this.getView().setModel(oModel, "customer");
+              },
             onSave: function () {
                 if (!this.pDialog) {
                     this.pDialog = this.loadFragment({
@@ -30,6 +31,10 @@ sap.ui.define([
 
             onCloseDialog: function () {
                 this.byId("dialog").close();
+            },
+            onCustomerChange: function (oEvent) {
+                var oBindingContext = oEvent.getParameter("listItem").getBindingContext();
+                this.byId("bookingTable").setBindingContext(oBindingContext);
             }
         });
     });
