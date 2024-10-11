@@ -1,8 +1,8 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="sap.training.exc.controller.Overview"
 core:require="{formatter: 'sap/training/exc/model/formatter'}">
-          <Page title="Flight Customers">
+          <Page title="{i18n>overviewPageTitle}">
   <content>
-    <Panel headerText="New Customer" expandable="{= !${device>/system/desktop} }" expanded="{device>/system/desktop}"
+    <Panel headerText="{i18n>customerPanelHeader}" expandable="{= !${device>/system/desktop} }" expanded="{device>/system/desktop}"
     class="sapUiResponsiveMargin sapUiHideOnPhone" width="auto">
       <content>
         <f:SimpleForm layout="ColumnLayout" editable="true">
@@ -10,36 +10,36 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
             <Toolbar>
               <content>
                 <ToolbarSpacer/>
-                <Button icon="sap-icon://create" text="Create Customer" press=".onSave"
+                <Button icon="sap-icon://create" text="{i18n>newCustomerButtonText}" press=".onSave"
                         enabled="{= ${customer>/CustomerName} !== undefined
                         &amp;&amp; ${customer>/CustomerName}.length>0}"/>
               </content>
             </Toolbar>
           </f:toolbar>
           <f:content>
-            <core:Title text="General Data"/>
-            <Label text="Form"/>
+            <core:Title text="{i18n>generalDataFormContainerTitle}"/>
+            <Label text="{i18n>formLabelText}"/>
             <Input value="{customer>/Form}"/>
-            <Label text="Customer Name"/>
+            <Label text="{i18n>nameLabelText}"/>
             <Input value="{customer>/CustomerName}" valueLiveUpdate="true"/>
-            <Label text="Discount"/>
+            <Label text="{i18n>discountLabelText}"/>
             <Input value="{
             path: 'customer>/Discount',
             type: 'sap.ui.model.type.Integer',
             constraints: {minimum: 0, maximum: 100}}"/>
-            <core:Title text="Address Data"/>
-            <Label text="Street"/>
+            <core:Title text="{i18n>addressDataFormContainerTitle}"/>
+            <Label text="{i18n>streetLabelText}"/>
             <Input value="{customer>/Street}"/>
-            <Label text="Post Code"/>
+            <Label text="{i18n>postcodeLabelText}"/>
             <Input value="{customer>/PostCode}"/>
-            <Label text="City"/>
+            <Label text="{i18n>cityLabelText}"/>
             <Input value="{customer>/City}"/>
-            <Label text="Country"/>
+            <Label text="{i18n>countryLabelText}"/>
             <Input value="{customer>/Country}"/>
-            <core:Title text="Contact Data"/>
-            <Label text="Email"/>
+            <core:Title text="{i18n>contactDataFormContainerTitle}"/>
+            <Label text="{i18n>emailLabelText}"/>
             <Input value="{customer>/Email}"/>
-            <Label text="Telephone"/>
+            <Label text="{i18n>phoneLabelText}"/>
             <Input value="{customer>/Telephone}"/>
           </f:content>
         </f:SimpleForm>
@@ -55,7 +55,7 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
       {path: 'CustomerName'} ]}">
     <headerToolbar>
       <Toolbar>
-        <Title text="Customers"/>
+        <Title text="{i18n>customerTableHeader}"/>
         <ToolbarSpacer/>
         <SearchField width="40%" search=".onFilterCustomers"/>
       </Toolbar>
@@ -65,7 +65,7 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
     <Column minScreenWidth="Desktop"><header><Text text="Street"/></header></Column>
     <Column minScreenWidth="Desktop"><header><Text text="Post Code"/></header></Column>
     <Column><header><Text text="City"/></header></Column>
-    <Column minScreenWidth="Tablet"><header><Text text="Country"/></header></Column>
+    <Column minScreenWidth="Tablet" ><header><Text text="Country"/></header></Column>
     <Column minScreenWidth="Tablet" demandPopin="true"><header><Text text="Email"/></header></Column>
     </columns>
     <items>
@@ -81,15 +81,15 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
     </ColumnListItem>
     </items>
     </Table>
-    <Table id="bookingTable" headerText="Bookings" items="{_Bookings}"
+    <Table id="bookingTable" headerText="{i18n>bookingTableHeader}" items="{_Bookings}"
     growing="true" growingThreshold="5" class="sap.sapUiResponsiveMargin">
     <columns>
-      <Column ><header><Text text="Airline ID"/></header></Column>
-      <Column ><header><Text text="Connection Number"/></header></Column>
-      <Column ><header><Text text="Flight Date"/></header></Column>
-      <Column minScreenWidth="Desktop" demandPopin="true"><header><Text text="Class"/></header></Column>
-      <Column minScreenWidth="Tablet" demandPopin="true"><header><Text text="Foreign Currency Payment"/></header></Column>
-      <Column minScreenWidth="Tablet" demandPopin="true"><header><Text text="Cancellation Status"/></header></Column>
+      <Column ><header><Text text="{i18n>airlineColumnHeader}"/></header></Column>
+      <Column ><header><Text text="{i18n>connectionColumnHeader}"/></header></Column>
+      <Column ><header><Text text="{i18n>fldateColumnHeader}"/></header></Column>
+      <Column minScreenWidth="Desktop" demandPopin="true"><header><Text text="{i18n>classColumnHeader}"/></header></Column>
+      <Column minScreenWidth="Tablet" demandPopin="true"><header><Text text="{i18n>paymentColumnHeader}"/></header></Column>
+      <Column minScreenWidth="Tablet" demandPopin="true"><header><Text text="{i18n>cancellationColumnHeader}"/></header></Column>
     </columns>
     <items>
     <ColumnListItem >
@@ -121,7 +121,7 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
        formatOptions: {showMeasure: false}}"
        unit="{ForeignCurrency}"/>
     <core:Icon src="{= ${IsCancelled} === 'X' ? 'sap-icon://cancel' : 'sap-icon://accept' }"
-          tooltip="{= ${IsCancelled} === 'X' ? 'cancelled' : 'not cancelled' }"/>
+          tooltip="{= ${IsCancelled} === 'X' ? '{i18n>cancelledTooltip}' : '{i18n>notCancelledTooltip}' }"/>
     </cells>
     </ColumnListItem>
     </items>
