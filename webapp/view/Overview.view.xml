@@ -49,7 +49,7 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
     mode="SingleSelectLeft" selectionChange=".onCustomerChange"
     class="sap.sapUiResponsiveMargin" width="auto" 
     items="{
-      path: '/Customers',
+      path: '/UX_Customer',
       sorter: [
       {path: 'City', group: true},
       {path: 'CustomerName'} ]}">
