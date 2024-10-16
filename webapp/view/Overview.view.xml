@@ -69,7 +69,7 @@ core:require="{formatter: 'sap/training/exc/model/formatter'}">
     <Column minScreenWidth="Tablet" demandPopin="true"><header><Text text="Email"/></header></Column>
     </columns>
     <items>
-    <ColumnListItem>
+    <ColumnListItem type="Navigation"  press=".onNavToDetails">
     <cells>
       <ObjectIdentifier title="{CustomerName}"/>
       <ObjectIdentifier title="{Street}"/>
