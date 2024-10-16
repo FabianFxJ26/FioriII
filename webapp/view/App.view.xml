@@ -3,10 +3,8 @@
   xmlns="sap.m"
   displayBlock="true">
 <Shell>
-  <App>
-    <pages>
-      <mvc:XMLView viewName="sap.training.exc.view.Overview"/>
-    </pages>
+  <App id="idApp">
+    
   </App>
 </Shell>
 </mvc:View>

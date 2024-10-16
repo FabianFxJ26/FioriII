@@ -20,6 +20,9 @@ sap.ui.define([
                 oDeviceModel.setDefaultBindingMode("OneWay");
                 this.setModel(oDeviceModel, "device");
 
+                //enable routing
+                this.getRouter().initialize();
+
             },
             getContentDensityClass: function () {
                 if (!this._sContentDensityClass) {
